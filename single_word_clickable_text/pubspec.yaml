@@ -2,7 +2,7 @@ name: single_word_clickable_text
 description: A Flutter package that provides a customizable widget for displaying text where each word is individually clickable.
   Ideal for applications that require interactive text, such as chat applications or tutorials.
   Supports customizing text style, alignment, and handling click events on each word.
-version: 1.0.3
+version: 1.0.4
 # repository: https://github.com/my_org/my_repo
 
 environment:
