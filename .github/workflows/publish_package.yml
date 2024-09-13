@@ -35,11 +35,11 @@ jobs:
 
       - name: Set up pub credentials
         run: |
-          echo "${{ secrets.PUB_TOKEN }}" > ~/.pub-cache/credentials.json
+          echo "//pub.dev:publish_token=${{ secrets.ACCESS_TOKEN }}" > ~/.pub-cache/credentials.json
 
       - name: Publish package
         env:
-          PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
+          PUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           cd widgets/${{ env.BRANCH_NAME }}
           flutter pub publish --dry-run
