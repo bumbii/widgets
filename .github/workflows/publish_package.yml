@@ -36,11 +36,10 @@ jobs:
       - name: Setup Pub Credentials
         shell: bash
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          REFRESH_TOKEN: ${{ REFRESH_TOKEN }}
-          TOKEN_ENDPOINT: ${{ secrets.PUB_DEV_PUBLISH_TOKEN_ENDPOINT }}
-          ID_TOKEN: ${{ secrets.ID_TOKEN }}
-          EXPIRATION: ${{ secrets.EXPIRATION }}
+          PUB_DEV_PUBLISH_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          PUB_DEV_PUBLISH_REFRESH_TOKEN: ${{ REFRESH_TOKEN }}
+          PUB_DEV_PUBLISH_TOKEN_ENDPOINT: ${{ secrets.PUB_DEV_PUBLISH_TOKEN_ENDPOINT }}
+          PUB_DEV_PUBLISH_EXPIRATION: ${{ secrets.EXPIRATION }}
           run: |
             sh ./pub_login.sh
 
