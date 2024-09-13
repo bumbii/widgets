@@ -35,7 +35,15 @@ jobs:
 
       - name: Set up pub credentials
         run: |
-          echo "//pub.dev:publish_token=${{ secrets.ACCESS_TOKEN }}" > ~/.pub-cache/credentials.json
+          mkdir -p ~/.pub-cache 
+          cat <<EOF > ~/.pub-cache/credentials.json
+          {
+            "accessToken":"${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}",
+            "refreshToken":"${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}",
+            "tokenEndpoint":"https://accounts.google.com/o/oauth2/token",
+            "scopes": [ "openid", "https://www.googleapis.com/auth/userinfo.email" ],
+            "expiration": ${{ secrets.PUB_DEV_PUBLISH_EXPIRATION }}
+          }
 
       - name: Publish package
         env:
