@@ -18,6 +18,11 @@ jobs:
         with:
           path: widgets
 
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0' # Thay đổi theo phiên bản Flutter bạn đang sử dụng
+
       - name: Install dependencies
         run: |
           cd widgets/single_word_clickable_text
