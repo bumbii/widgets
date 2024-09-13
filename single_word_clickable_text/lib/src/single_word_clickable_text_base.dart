@@ -26,7 +26,7 @@ class SingleWordClickableText extends StatelessWidget {
                 recognizer: TapGestureRecognizer()
                   ..onTap = () => onWordPressed?.call(word));
           }).toList(),
-          style: textStyle),
+          style: textStyle ?? TextStyle(color: Colors.deepPurple)),
     );
   }
 }
