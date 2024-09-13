@@ -1,54 +1,37 @@
-name: Handle PR Merge
+name: Publish Flutter Package
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
-    types:
-      - closed
+    branches:
+      - main
 
 jobs:
-  handle-pr-merge:
+  publish:
+    name: Publish Package
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true # Ensure that this workflow runs only on merged PRs
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Get the source branch name
-        id: get_branch_name
-        run: echo "SOURCE_BRANCH=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
-
-      - name: Create directory if it does not exist
-        run: |
-          if [ ! -d "${{ env.SOURCE_BRANCH }}" ]; then
-            mkdir -p "${{ env.SOURCE_BRANCH }}"
-            echo "Directory created: ${{ env.SOURCE_BRANCH }}"
-          else
-            echo "Directory already exists: ${{ env.SOURCE_BRANCH }}"
-          fi
-
-      - name: Move to source branch directory
-        run: |
-          if [ -d "${{ env.SOURCE_BRANCH }}" ]; then
-            cd "${{ env.SOURCE_BRANCH }}"
-            echo "Current directory: $(pwd)"
-          else
-            echo "Directory does not exist: ${{ env.SOURCE_BRANCH }}"
-            exit 1
-          fi
-
-      - name: Set up Dart
-        uses: dart-lang/setup-dart@v1
         with:
-          sdk: 'stable'
+          path: widgets
 
       - name: Install dependencies
-        run: dart pub get
+        run: |
+          cd widgets/single_word_clickable_text
+          flutter pub get
 
-      - name: Validate package
-        run: dart pub publish --dry-run
+      - name: Run tests
+        run: |
+          cd widgets/single_word_clickable_text
+          flutter test
 
-      - name: Publish to pub.dev
-        run: dart pub publish --force
+      - name: Publish package
         env:
           PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
+        run: |
+          cd widgets/single_word_clickable_text
+          flutter pub publish --dry-run
+          flutter pub publish --force
