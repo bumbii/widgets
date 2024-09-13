@@ -15,7 +15,7 @@ start using the package.
 
 Here is an example of how to use SingleWordClickableText in your Flutter application:
 
-![](./assets/images/guide.png)
+![guide](https://github.com/user-attachments/assets/36763189-f0b9-4a7c-b997-e018f7a4db8a)
 
 
 ## Properties of SingleWordClickableText
