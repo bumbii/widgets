@@ -40,8 +40,8 @@ jobs:
           PUB_DEV_PUBLISH_REFRESH_TOKEN: ${{ REFRESH_TOKEN }}
           PUB_DEV_PUBLISH_TOKEN_ENDPOINT: ${{ secrets.PUB_DEV_PUBLISH_TOKEN_ENDPOINT }}
           PUB_DEV_PUBLISH_EXPIRATION: ${{ secrets.EXPIRATION }}
-          run: |
-            sh ./pub_login.sh
+        run: |
+          sh ./pub_login.sh
 
       - name: Publish package
         env:
