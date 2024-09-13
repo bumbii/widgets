@@ -1,25 +1,37 @@
-name: Dart Package Publish
+name: Handle PR Merge
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types:
+      - closed
 
 jobs:
-  publish:
+  handle-pr-merge:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true # Ensure that this workflow runs only on merged PRs
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up Dart environment
+      - name: List directory contents
+        run: ls -R
+
+      - name: Change directory to single_word_clickable_text
+        run: |
+          if [ -d "widgets/single_word_clickable_text" ]; then
+            echo "Directory exists. Changing directory..."
+            cd widgets/single_word_clickable_text
+            echo "Current directory: $(pwd)"
+          else
+            echo "Directory does not exist: widgets/single_word_clickable_text"
+            exit 1
+          fi
+
+      - name: Set up Dart
         uses: dart-lang/setup-dart@v1
         with:
           sdk: 'stable'
-
-      - name: Change directory to package
-        run: cd widgets/single_word_clickable_text
 
       - name: Install dependencies
         run: dart pub get
