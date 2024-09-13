@@ -26,7 +26,6 @@ jobs:
           cd widgets/single_word_clickable_text
           flutter pub get
 
-
       - name: Publish package
         env:
           PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
