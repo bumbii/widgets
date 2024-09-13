@@ -19,7 +19,10 @@ jobs:
           sdk: 'stable'
 
       - name: Change directory to package
-        run: cd single_word_clickable_text
+        run: cd widgets/single_word_clickable_text
+
+      - name: Install dependencies
+        run: dart pub get
 
       - name: Validate package
         run: dart pub publish --dry-run
