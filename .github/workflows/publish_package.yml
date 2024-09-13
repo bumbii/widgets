@@ -1,19 +1,36 @@
-name: Dart Package Publish
+name: Handle PR Merge
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types:
+      - closed
 
 jobs:
-  publish:
+  handle-pr-merge:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true # Ensure that this workflow runs only on merged PRs
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up Dart environment
+      - name: Get the source branch name
+        id: get_branch_name
+        run: echo "SOURCE_BRANCH=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
+
+      - name: Ensure directory exists and change directory
+        run: |
+          echo "Checking if directory ${SOURCE_BRANCH} exists..."
+          if [ -d "${SOURCE_BRANCH}" ]; then
+            echo "Directory ${SOURCE_BRANCH} exists. Changing directory..."
+            cd ${SOURCE_BRANCH}
+            echo "Current directory: $(pwd)"
+          else
+            echo "Directory ${SOURCE_BRANCH} does not exist. Exiting."
+            exit 1
+          fi
+
+      - name: Set up Dart
         uses: dart-lang/setup-dart@v1
         with:
           sdk: 'stable'
