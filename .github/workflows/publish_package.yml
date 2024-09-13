@@ -37,14 +37,11 @@ jobs:
         run: |
           echo "//pub.dev:publish_token=${{ secrets.CREDENTIAL_JSON }}" > ~/.pub-cache/credentials.json
 
-      - name: cd folder
-        run: |
-          cd widgets/${{ env.BRANCH_NAME }}
-
       - name: Publish package
         uses: sakebook/actions-flutter-pub-publisher@v1.4.1
         with:
           credential: ${{ secrets.CREDENTIAL_JSON }}
-          flutter_package: false
-          skip_test: true
-          dry_run: true
+        run: |
+          cd widgets/${{ env.BRANCH_NAME }}
+          flutter pub publish --dry-run
+          flutter pub publish --force
