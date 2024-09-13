@@ -35,20 +35,16 @@ jobs:
 
       - name: Set up pub credentials
         run: |
-          mkdir -p ~/.pub-cache 
-          cat <<EOF > ~/.pub-cache/credentials.json
-          {
-            "accessToken":"${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}",
-            "refreshToken":"${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}",
-            "tokenEndpoint":"https://accounts.google.com/o/oauth2/token",
-            "scopes": [ "openid", "https://www.googleapis.com/auth/userinfo.email" ],
-            "expiration": ${{ secrets.PUB_DEV_PUBLISH_EXPIRATION }}
-          }
+          echo "//pub.dev:publish_token=${{ secrets.CREDENTIAL_JSON }}" > ~/.pub-cache/credentials.json
 
-      - name: Publish package
-        env:
-          PUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      - name: cd folder
         run: |
           cd widgets/${{ env.BRANCH_NAME }}
-          flutter pub publish --dry-run
-          flutter pub publish --force
+
+      - name: Publish package
+        uses: sakebook/actions-flutter-pub-publisher@v1.4.1
+        with:
+          credential: ${{ secrets.CREDENTIAL_JSON }}
+          flutter_package: false
+          skip_test: true
+          dry_run: true
