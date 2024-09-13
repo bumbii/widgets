@@ -14,17 +14,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: List directory contents
-        run: ls -R
+      - name: Get the source branch name
+        id: get_branch_name
+        run: echo "SOURCE_BRANCH=${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
 
-      - name: Change directory to single_word_clickable_text
+      - name: Create directory if it does not exist
         run: |
-          if [ -d "packages/single_word_clickable_text" ]; then
-            echo "Directory exists. Changing directory..."
-            cd widgets/single_word_clickable_text
+          if [ ! -d "${{ env.SOURCE_BRANCH }}" ]; then
+            mkdir -p "${{ env.SOURCE_BRANCH }}"
+            echo "Directory created: ${{ env.SOURCE_BRANCH }}"
+          else
+            echo "Directory already exists: ${{ env.SOURCE_BRANCH }}"
+          fi
+
+      - name: Move to source branch directory
+        run: |
+          if [ -d "${{ env.SOURCE_BRANCH }}" ]; then
+            cd "${{ env.SOURCE_BRANCH }}"
             echo "Current directory: $(pwd)"
           else
-            echo "Directory does not exist: packages/single_word_clickable_text"
+            echo "Directory does not exist: ${{ env.SOURCE_BRANCH }}"
             exit 1
           fi
 
