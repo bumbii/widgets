@@ -39,7 +39,7 @@ jobs:
 
       - name: Publish package
         env:
-          PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
+          PUB_TOKEN: ${{ secrets.PUB_CREDENTIALS_JSON }}
         run: |
           cd widgets/${{ env.BRANCH_NAME }}
           flutter pub publish --dry-run
