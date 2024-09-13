@@ -19,12 +19,12 @@ jobs:
 
       - name: Change directory to single_word_clickable_text
         run: |
-          if [ -d "widgets/single_word_clickable_text" ]; then
+          if [ -d "packages/single_word_clickable_text" ]; then
             echo "Directory exists. Changing directory..."
             cd widgets/single_word_clickable_text
             echo "Current directory: $(pwd)"
           else
-            echo "Directory does not exist: widgets/single_word_clickable_text"
+            echo "Directory does not exist: packages/single_word_clickable_text"
             exit 1
           fi
 
