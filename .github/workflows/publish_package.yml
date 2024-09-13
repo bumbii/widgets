@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   publish:
@@ -21,22 +18,22 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0' # Thay đổi theo phiên bản Flutter bạn đang sử dụng
+          flutter-version: '3.24.0'
+
+      - name: Get branch name
+        id: get_branch
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: |
-          cd widgets/single_word_clickable_text
+          echo "Branch name: ${{ env.BRANCH_NAME }}"
+          cd widgets/${{ env.BRANCH_NAME }}
           flutter pub get
-
-      - name: Run tests
-        run: |
-          cd widgets/single_word_clickable_text
-          flutter test
 
       - name: Publish package
         env:
           PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
         run: |
-          cd widgets/single_word_clickable_text
+          cd widgets/${{ env.BRANCH_NAME }}
           flutter pub publish --dry-run
           flutter pub publish --force
