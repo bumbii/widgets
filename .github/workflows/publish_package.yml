@@ -41,6 +41,7 @@ jobs:
           PUB_DEV_PUBLISH_TOKEN_ENDPOINT: ${{ secrets.PUB_DEV_PUBLISH_TOKEN_ENDPOINT }}
           PUB_DEV_PUBLISH_EXPIRATION: ${{ secrets.EXPIRATION }}
         run: |
+          cd widgets/${{ env.BRANCH_NAME }}
           sh ./pub_login.sh
 
       - name: Publish package
