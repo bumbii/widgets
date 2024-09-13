@@ -1,6 +1,6 @@
 ## languages_simple
 
-A Flutter package for displaying the SVG images of language flags.
+A Flutter package for displaying the SVG images of language flags. You can customize styles and pass your own favorite languages.
 
 ![example](https://github.com/user-attachments/assets/d1813cf7-0cdd-4e70-800a-32d02a080f71)
 
