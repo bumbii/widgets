@@ -1,12 +1,14 @@
 name: Publish Flutter Package
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
 
 jobs:
   publish:
+    if: github.event.pull_request.merged == true
     name: Publish Package
     runs-on: ubuntu-latest
     steps:
@@ -22,7 +24,8 @@ jobs:
 
       - name: Get branch name
         id: get_branch
-        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+        run: |
+          echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF})" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: |
