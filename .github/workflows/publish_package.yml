@@ -33,6 +33,10 @@ jobs:
           cd widgets/${{ env.BRANCH_NAME }}
           flutter pub get
 
+      - name: Set up pub credentials
+        run: |
+          echo "${{ secrets.PUB_CREDENTIALS_JSON }}" > ~/.pub-cache/credentials.json
+
       - name: Publish package
         env:
           PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
