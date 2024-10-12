@@ -174,3 +174,102 @@ class _LanguagesSimpleState extends State<LanguagesSimple> {
     setState(() {});
   }
 }
+
+
+class FlagLanguageSimple extends StatefulWidget {
+  final double? width;
+  final double? height;
+  final String languageCode;
+
+  const FlagLanguageSimple({
+    super.key,
+    this.width,
+    this.height,
+    required this.languageCode,
+  });
+
+  @override
+  State<FlagLanguageSimple> createState() => _FlagLanguageSimpleState();
+}
+
+class _FlagLanguageSimpleState extends State<FlagLanguageSimple> {
+  String _languageKey = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _getFinalLanguages();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(_getImagePath(),
+        height: widget.height ?? 24, width: widget.width ?? 32);
+  }
+
+  _getImagePath() {
+    String name = '';
+    if (_languageKey.contains('-')) {
+      name = _languageKey.split('-').last;
+    } else {
+      name = _languageKey;
+    }
+    return 'packages/languages_simple/lib/res/svg/$name.svg';
+  }
+  void _getFinalLanguages() async {
+    if (widget.languageCode.isNotEmpty) {
+      // Some language codes and country codes are different
+      if (languageCountryPairs.containsKey(widget.languageCode)) {
+        _languageKey = '${languageCountryPairs[widget.languageCode]}';
+      } else {
+        _languageKey = widget.languageCode;
+      }
+      setState(() {});
+    }
+  }
+}
+
+class NameLanguageSimple extends StatefulWidget {
+  final TextStyle? textStyle;
+  final String languageCode;
+
+  const NameLanguageSimple({
+    super.key,
+    this.textStyle,
+    required this.languageCode,
+  });
+
+  @override
+  State<NameLanguageSimple> createState() => _NameLanguageSimpleState();
+}
+
+class _NameLanguageSimpleState extends State<NameLanguageSimple> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(_getFinalLanguages(), style: widget.textStyle,);
+  }
+
+  String _getFinalLanguages() {
+    String result = '';
+    String formattedCode = '';
+    if (widget.languageCode.isNotEmpty) {
+      // Some language codes and country codes are different
+      if (languageCountryPairs.containsKey(widget.languageCode)) {
+        formattedCode = '${languageCountryPairs[widget.languageCode]}';
+      } else {
+        formattedCode = widget.languageCode;
+      }
+      //
+      // Get name language
+      if (languages.containsKey(formattedCode))
+        result = '${languages[formattedCode]}';
+    }
+    return result;
+  }
+}

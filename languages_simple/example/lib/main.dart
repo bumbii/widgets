@@ -109,6 +109,16 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         initialLanguageCode: 'en',
       ),
+      // body: const Column(
+      //   children: [
+      //     FlagLanguageSimple(
+      //       languageCode: 'en',
+      //     ),
+      //     NameLanguageSimple(
+      //       languageCode: 'vi',
+      //     ),
+      //   ],
+      // ),
     );
   }
 }
