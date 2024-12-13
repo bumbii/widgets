@@ -1,10 +1,10 @@
 name: languages_simple
 description: "A Flutter package for displaying the SVG images of language flags. You can customize styles and pass your own favorite languages."
-version: 0.0.14
+version: 0.0.15
 homepage:
 
 environment:
-  sdk: '>=3.4.3 <4.0.0'
+  sdk: ">=3.4.3 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -22,7 +22,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -36,7 +35,7 @@ flutter:
 
   # To add custom fonts to your package, add a fonts section here,
   assets:
-  - lib/res/svg/
+    - lib/res/svg/
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For

@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
         languageCodes: const [
           'ar',
           'ca',
-          'cn',
+          'zh-cn',
           'en',
           'fr',
           'hi',
@@ -109,13 +109,16 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         initialLanguageCode: 'en',
       ),
+      // ------------------------------------
+      // Pass your own flag
+      // ------------------------------------
       // body: const Column(
       //   children: [
       //     FlagLanguageSimple(
-      //       languageCode: 'en',
+      //       languageCode: 'cn',
       //     ),
       //     NameLanguageSimple(
-      //       languageCode: 'vi',
+      //       languageCode: 'zh-cn',
       //     ),
       //   ],
       // ),

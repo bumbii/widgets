@@ -68,7 +68,8 @@ class _LanguagesSimpleState extends State<LanguagesSimple> {
           return GestureDetector(
               onTap: () {
                 final data = [
-                  _handledLanguages.keys.elementAt(i).substring(0, 2),
+                  // _handledLanguages.keys.elementAt(i).substring(0, 2),
+                  _handledLanguages.keys.elementAt(i),
                   _handledLanguages.values.elementAt(i)
                 ];
                 _selectedIndex = i;
@@ -175,7 +176,6 @@ class _LanguagesSimpleState extends State<LanguagesSimple> {
   }
 }
 
-
 class FlagLanguageSimple extends StatefulWidget {
   final double? width;
   final double? height;
@@ -216,6 +216,7 @@ class _FlagLanguageSimpleState extends State<FlagLanguageSimple> {
     }
     return 'packages/languages_simple/lib/res/svg/$name.svg';
   }
+
   void _getFinalLanguages() async {
     if (widget.languageCode.isNotEmpty) {
       // Some language codes and country codes are different
@@ -244,7 +245,6 @@ class NameLanguageSimple extends StatefulWidget {
 }
 
 class _NameLanguageSimpleState extends State<NameLanguageSimple> {
-
   @override
   void initState() {
     super.initState();
@@ -252,7 +252,10 @@ class _NameLanguageSimpleState extends State<NameLanguageSimple> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(_getFinalLanguages(), style: widget.textStyle,);
+    return Text(
+      _getFinalLanguages(),
+      style: widget.textStyle,
+    );
   }
 
   String _getFinalLanguages() {
