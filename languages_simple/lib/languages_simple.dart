@@ -157,16 +157,20 @@ class _LanguagesSimpleState extends State<LanguagesSimple> {
       if (widget.initialLanguageCode!.isNotEmpty) {
         for (int i = 0; i < _handledLanguages.keys.length; i++) {
           final key = _handledLanguages.keys.elementAt(i);
-          if (key.contains('-')) {
-            if (key.split('-')[0] == widget.initialLanguageCode) {
-              _selectedIndex = i;
-              break;
-            }
-          } else {
-            if (key == widget.initialLanguageCode) {
-              _selectedIndex = i;
-              break;
-            }
+          // if (key.contains('-')) {
+          //   if (key.split('-')[0] == widget.initialLanguageCode) {
+          //     _selectedIndex = i;
+          //     break;
+          //   }
+          // } else {
+          //   if (key == widget.initialLanguageCode) {
+          //     _selectedIndex = i;
+          //     break;
+          //   }
+          // }
+          if(key == widget.initialLanguageCode){
+                _selectedIndex = i;
+                break;
           }
         }
       }
