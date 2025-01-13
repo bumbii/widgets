@@ -88,8 +88,12 @@ class _LanguagesSimpleState extends State<LanguagesSimple> {
                       children: [
                         Expanded(
                             child: Text(_handledLanguages.values.elementAt(i))),
-                        SvgPicture.asset(_getImagePath(i),
-                            height: 24, width: 32)
+                        SizedBox(
+                          height: 24,
+                          width: 32,
+                          child: SvgPicture.asset(_getImagePath(i),
+                              fit: BoxFit.fill),
+                        )
                       ])));
         });
   }
@@ -168,9 +172,9 @@ class _LanguagesSimpleState extends State<LanguagesSimple> {
           //     break;
           //   }
           // }
-          if(key == widget.initialLanguageCode){
-                _selectedIndex = i;
-                break;
+          if (key == widget.initialLanguageCode) {
+            _selectedIndex = i;
+            break;
           }
         }
       }
@@ -274,8 +278,9 @@ class _NameLanguageSimpleState extends State<NameLanguageSimple> {
       }
       //
       // Get name language
-      if (languages.containsKey(formattedCode))
+      if (languages.containsKey(formattedCode)) {
         result = '${languages[formattedCode]}';
+      }
     }
     return result;
   }
