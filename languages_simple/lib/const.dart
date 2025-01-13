@@ -1,6 +1,6 @@
 final languageCountryPairs = {
   'ar': 'ar-sa',
-  'ca': 'ca-es',
+  // 'ca': 'ca-es',
   'da': 'da-dk',
   'dv': 'dv-mv',
   'el': 'el-gr',
@@ -13,20 +13,20 @@ final languageCountryPairs = {
   'kk': 'kk-kz',
   'ko': 'ko-kr',
   'kok': 'kok-in',
-  'mi': 'mi-nz',
+  // 'mi': 'mi-nz',
   // 'ns': 'ns-za',
   'ns': 'nso-za',
-  'qu': 'qu-bo',
+  // 'qu': 'qu-bo',
   'sq': 'sq-al',
   'sw': 'sw-ke',
   // The official language of Syria is Arabic
   // 'sy': 'syr-sy',
-  'te': 'te-in',
+  // 'te': 'te-in',
   'uk': 'uk-ua',
   'ur': 'ur-pk',
   'vi': 'vi-vn',
-  'xh': 'xh-za',
-  'zu': 'zu-za',
+  // 'xh': 'xh-za',
+  // 'zu': 'zu-za',
 };
 
 final languages = {
