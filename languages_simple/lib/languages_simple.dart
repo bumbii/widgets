@@ -24,6 +24,7 @@ class LanguagesSimple extends StatefulWidget {
   final List<String>? languageCodes;
   //
   final String? initialLanguageCode;
+  final TextStyle? textStyle;
 
   const LanguagesSimple({
     super.key,
@@ -43,6 +44,7 @@ class LanguagesSimple extends StatefulWidget {
     this.isSortedByLanguageCode,
     this.languageCodes,
     this.initialLanguageCode,
+    this.textStyle,
   });
 
   @override
@@ -87,7 +89,9 @@ class _LanguagesSimpleState extends State<LanguagesSimple> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                            child: Text(_handledLanguages.values.elementAt(i))),
+                            child: Text(_handledLanguages.values.elementAt(i),
+                                overflow: TextOverflow.ellipsis,
+                                style: widget.textStyle)),
                         SizedBox(
                           height: 24,
                           width: 32,

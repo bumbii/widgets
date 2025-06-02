@@ -93,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         decoration: const BoxDecoration(color: Colors.white),
         selectedDecoration: const BoxDecoration(color: Colors.green),
+        textStyle: const TextStyle(fontWeight: FontWeight.bold),
         // your favorite language codes
         // languageCodes: const [
         //   'ko-kr',
